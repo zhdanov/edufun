@@ -3,6 +3,8 @@ namespace ef\mongo;
 
 /**
  * Подключение к mongodb.
+
+ * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  *
  * @param string $host     Имя хоста
  * @param string $user     Имя пользователя
@@ -10,8 +12,6 @@ namespace ef\mongo;
  * @param string $db       Название базы данных
  *
  * @return array [0 => Соединение, 1 => База данных]
- *
- * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  */
 
 function connect($host, $user, $password, $db)

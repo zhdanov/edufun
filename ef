@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+namespace ef;
+
+/**
+ * Роутер. Обрабатывает и запускает команды.
+ *
+ * @example ./ef test all
+ *
+ * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
+ */
+
+// запуск команды
+require_once(__DIR__ . '/commands/' . $argv[1] . '.php');

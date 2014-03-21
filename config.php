@@ -14,5 +14,7 @@ $config = [
         'user'     => '',
         'password' => '',
         'db'       => 'ef'
-    ]
+    ],
+    // путь к директории с тестами
+    'tests_directory' => __DIR__ . '/tests/checks'
 ];

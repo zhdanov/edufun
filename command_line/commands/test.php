@@ -1,8 +1,8 @@
 <?php
 namespace ef\commands;
 
-require_once(__DIR__ . '/../config.php');
-require_once(__DIR__ . '/../tests/run_all_checks.function.php');
+require_once(__DIR__ . '/../../config.php');
+require_once(__DIR__ . '/../../tests/run_all_checks.function.php');
 
 /**
  * Управление тестами.

@@ -2,7 +2,7 @@
 namespace ef\tests;
 
 /**
- * Возвращает строку с зелёным или красным фоном.
+ * Функция возвращает строку с зелёным или красным фоном.
  *
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  *

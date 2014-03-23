@@ -7,9 +7,10 @@ namespace ef\tests\checks;
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  */
 
-echo "Роутер";
+echo 'Проверка: "Роутер"';
 echo '.';
 echo '.';
 echo '.';
 echo '.';
+
 echo "\n";

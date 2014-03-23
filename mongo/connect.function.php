@@ -2,7 +2,7 @@
 namespace ef\mongo;
 
 /**
- * Подключение к mongodb.
+ * Функция создаёт соединение с mongodb.
 
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  *

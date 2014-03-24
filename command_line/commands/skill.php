@@ -3,7 +3,7 @@ namespace ef\command_line\commands;
 
 require_once(__DIR__ . '/../clean_output.function.php');
 require_once(__DIR__ . '/../read_stdin.function.php');
-require_once(__DIR__ . '/../../mongo/connect.php');
+require(__DIR__ . '/../../mongo/connect.php');
 
 $question = "Введите блок текста. Для завершения введите '.' на отдельной строке.\n";
 echo $question;

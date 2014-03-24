@@ -11,4 +11,4 @@ namespace ef;
  */
 
 // запуск команды
-require_once(__DIR__ . '/command_line/commands/' . $argv[1] . '.php');
+require(__DIR__ . '/command_line/commands/' . $argv[1] . '.php');

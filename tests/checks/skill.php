@@ -22,7 +22,7 @@ $stdin = [
     'wait' => 1
   ]
 ];
-\ef\command_line\write_stdin('php ' . __DIR__ . '/../../command_line/commands/skill.php', $stdin);
+\ef\command_line\write_stdin(__DIR__ . '/../../ef skill add', $stdin);
 echo '.';
 // проверка в бд
 // пример вызова исключения

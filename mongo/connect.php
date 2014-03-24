@@ -1,7 +1,7 @@
 <?php
 namespace ef\mongo;
 
-require_once(__DIR__ . '/../config.php');
+require(__DIR__ . '/../config.php');
 require_once(__DIR__ . '/connect.function.php');
 
 /**
@@ -11,7 +11,7 @@ require_once(__DIR__ . '/connect.function.php');
  * $mongo_db   База данных
  *
  * @example
- * require_once(__DIR__ . '/mongo/connect.php');
+ * require(__DIR__ . '/mongo/connect.php');
  * $mongo_db->people->insert(['a' => 1, 'b' => 2]);
  *
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>

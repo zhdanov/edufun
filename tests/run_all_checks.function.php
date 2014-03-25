@@ -25,7 +25,7 @@ function run_all_checks($tests_directory)
             }
         }
     } catch (\Exception $e) {
-      echo "\n\n" . $e->getMessage() . "\n\n";
+      echo "\n\n" . $e->getMessage() . "\n" . $e->getFile() . ':' . $e->getLine() . "\n\n";
       $check_result = false;
     }
 

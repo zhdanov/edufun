@@ -2,6 +2,8 @@
 namespace ef\tests;
 
 require_once(__DIR__ . '/get_color_line.function.php');
+require_once(__DIR__ . '/../mongo/clean_db.function.php');
+require_once(__DIR__ . '/load_all_fixtures.function.php');
 
 /**
  * Функция запускает все тесты из указанной директории.
@@ -14,8 +16,16 @@ require_once(__DIR__ . '/get_color_line.function.php');
  *
  * @return void
  */
-function run_all_checks($tests_directory)
+function run_all_tests($tests_directory)
 {
+    require(__DIR__ . '/../mongo/connect.php');
+
+    // очистка бд
+    \ef\mongo\clean_db($mongo_db);
+
+    // загрузка тестовых данных
+    \ef\tests\load_all_fixtures($config['fixtures_directory']);
+
     $check_result = true;
 
     try {

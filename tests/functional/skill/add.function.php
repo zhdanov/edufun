@@ -1,10 +1,10 @@
 <?php
-namespace ef\tests\unit\skill;
+namespace ef\tests\functional;
 
-require_once(__DIR__ .'/../../../skill/add_skill.function.php');
+require_once(__DIR__ . '/../../../command_line/write_stdin.function.php');
 
 /**
- * Модульный тест добавления навыка.
+ * Функциональный тест добавления навыка.
  *
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  *
@@ -15,11 +15,27 @@ require_once(__DIR__ .'/../../../skill/add_skill.function.php');
  * @return void.
  */
 
-function add_skill($theme_name, $description, $solution)
+function add($theme_name, $description, $solution)
 {
     require(__DIR__ . '/../../../mongo/connect.php');
 
-    \ef\skill\add_skill($theme_name, $description, $solution);
+    $stdin = [
+        [
+            'text' => $theme_name . "\n",
+            'wait' => 1
+        ],
+        [
+            'text' => $description . "\n.\n",
+            'wait' => 1
+        ],
+        [
+            'text' => $solution . "\n.\n",
+            'wait' => 1
+        ]
+    ];
+
+    // отправка в STDIN команде "./ef skill add"
+    \ef\command_line\write_stdin(__DIR__ . '/../../../ef skill add', $stdin);
 
     $theme = $mongo_db->theme->findOne(['name'=>$theme_name]);
 

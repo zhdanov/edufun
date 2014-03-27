@@ -2,7 +2,7 @@
 namespace ef\command_line\commands\skill;
 
 require_once(__DIR__ . '/../../read_stdin.function.php');
-require_once(__DIR__ . '/../../../skill/add_skill.function.php');
+require_once(__DIR__ . '/../../../skill/add.function.php');
 
 /**
  * Функция добавляет навык из командой строки с помощью
@@ -11,7 +11,7 @@ require_once(__DIR__ . '/../../../skill/add_skill.function.php');
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  */
 
-function add_skill()
+function add()
 {
     // подключение к mongo
     require(__DIR__ . '/../../../mongo/connect.php');
@@ -33,5 +33,5 @@ function add_skill()
     $solution = \ef\command_line\read_stdin('block', 'Описание решения:');
 
     // добавление навыка
-    \ef\skill\add_skill($theme_name, $description, $solution);
+    \ef\skill\add($theme_name, $description, $solution);
 }

@@ -16,10 +16,10 @@ $mongo_db->theme->insert([
 
 // test_theme2
 $mongo_db->theme->insert([
-    'name' => 'test_theme3'
+    'name' => 'test_theme2'
 ]);
 
 // test_theme3
 $mongo_db->theme->insert([
-    'name' => 'test_theme4'
+    'name' => 'test_theme3'
 ]);

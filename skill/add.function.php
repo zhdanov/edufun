@@ -11,7 +11,7 @@ namespace ef\skill;
  * @param string $solution    Описание решения.
  */
 
-function add_skill($theme_name, $description, $solution)
+function add($theme_name, $description, $solution)
 {
     require(__DIR__ . '/../mongo/connect.php');
 

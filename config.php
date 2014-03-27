@@ -16,6 +16,12 @@ $config = [
         'db'       => 'ef'
     ],
 
+    // алиасы
+    'command_aliases' => [
+        'up'  => 'skill',
+        'add' => 'skill'
+    ],
+
     // путь к директории с модульными тестами
     'unit_tests_directory' => __DIR__ . '/tests/unit',
 

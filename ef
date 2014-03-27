@@ -2,6 +2,8 @@
 <?php
 namespace ef;
 
+require(__DIR__ . '/config.php');
+
 /**
  * Роутер. Обрабатывает и запускает команды.
  *
@@ -10,5 +12,18 @@ namespace ef;
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  */
 
+$command = $argv[1];
+
+// проверка алиасов
+if (isset($config['command_aliases'][$command])) {
+    $command = $config['command_aliases'][$command];
+
+    // сдвиг параметров вправо
+    if (isset($argv[2])) {
+        $argv[3] = $argv[2];
+    }
+    $argv[2] = $argv[1];
+}
+
 // запуск команды
-require(__DIR__ . '/command_line/commands/' . $argv[1] . '.php');
+require(__DIR__ . '/command_line/commands/' . $command . '.php');

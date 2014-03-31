@@ -14,12 +14,10 @@ namespace ef\command_line;
 function clean_output($output)
 {
     $lines = preg_split('/\n|\r/', $output);
-    $count_lines = count($lines);
+    $count_lines = count($lines)-1;
 
-    // перевод каретки в начало текста
-    echo chr(27) . "[0G" . chr(27) . "[" . $count_lines ."A";
-
-     // очистка текста
+    echo "\033[".$count_lines."A";
+    array_pop($lines);
     foreach ($lines as $line) {
         for ($i = 0; $i <= mb_strlen($line, 'UTF-8'); $i++) {
             echo ' ';
@@ -27,6 +25,5 @@ function clean_output($output)
         echo "\n";
     }
 
-    // перевод каретки в начало текста
-    echo chr(27) . "[0G" . chr(27). "[" . $count_lines ."A";
+    echo "\033[".$count_lines."A";
 }

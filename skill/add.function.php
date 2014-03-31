@@ -16,7 +16,6 @@ function add($theme_name, $description, $solution)
     require(__DIR__ . '/../mongo/connect.php');
 
     $theme = $mongo_db->theme->findOne(['name'=>$theme_name]);
-
     if (!$theme) {
         throw new \Exception('Тема не найдена');
     }

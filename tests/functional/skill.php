@@ -2,6 +2,7 @@
 namespace ef\tests\functional;
 
 require_once(__DIR__ . '/skill/add.function.php');
+require_once(__DIR__ . '/skill/up.function.php');
 
 /**
  * Функциональные тесты для управления навыками.
@@ -12,7 +13,8 @@ require_once(__DIR__ . '/skill/add.function.php');
 // добавление навыка
 \ef\tests\functional\add('test_theme1', 'Тестовое описание навыка', 'Тестовое решение');
 
-// удаление навыка
-// ...
+// прокачка навыка
+\ef\tests\functional\up('test_theme1', 'Правильное решение', 'y');
+\ef\tests\functional\up('test_theme1', 'Неправильное решение', 'n');
 
 echo "\n";

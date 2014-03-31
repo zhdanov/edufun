@@ -21,15 +21,19 @@ require_once(__DIR__ . '/clean_output.function.php');
 function read_stdin($type = 'line', $message)
 {
     $result = null;
+    $output = '';
 
     // вывод сообщения
     echo $message . "\n";
+    $output .= $message . "\n";
 
     // приём STDIN
     switch ($type) {
         // одна строка
         case 'line':
-            $result = rtrim(fgets(STDIN));
+            $stdin = fgets(STDIN);
+            $result = rtrim($stdin);
+            $output .= $stdin;
         break;
 
         // блок текста до '.' на отдельной строке
@@ -47,11 +51,12 @@ function read_stdin($type = 'line', $message)
             }
             fclose($fp);
             $result =  rtrim($stdin);
+            $output .= $stdin . ".\n";
         break;
     }
 
     // очистка STDOUT
-    \ef\command_line\clean_output($message . "\n" . ($type == 'line' ? $result : $result . "\n"));
+    \ef\command_line\clean_output($output);
 
     return rtrim($result);
 }

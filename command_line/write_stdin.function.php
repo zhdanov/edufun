@@ -26,8 +26,20 @@ function write_stdin($command, $stdin)
 
     if (is_resource($process)) {
         foreach ($stdin as $item) {
-          sleep($item['wait']);
-          fwrite($pipes[0], $item['text']) ;
+            if (isset($item['wait'])) {
+                sleep($item['wait']);
+            }
+            if (isset($item['text'])) {
+                fwrite($pipes[0], $item['text']) ;
+            }
+            if (isset($item['command'])) {
+                if ($item['command'] == 'exit') {
+                    sleep(1);
+                    $s = proc_get_status($process);
+                    posix_kill($s['pid'], 3);
+                    break;
+                }
+            }
         }
 
         stream_get_contents($pipes[1]);

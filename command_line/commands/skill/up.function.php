@@ -26,6 +26,9 @@ function up($theme_name)
     }
 
     $skill = \ef\skill\get_for_grinding($theme_name);
+    if (!$skill) {
+        die("Все навыки прокачены\n");
+    }
 
     // получение решения из STDIN
     $solution = \ef\command_line\read_stdin('block', $skill['description']);

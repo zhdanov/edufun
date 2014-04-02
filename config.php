@@ -22,6 +22,15 @@ $config = [
         'add' => 'skill'
     ],
 
+    // настройка уровней навыка
+    'skill_levels' => [
+        1 => ['repeat' => 0],
+        2 => ['repeat' => 5],
+        3 => ['repeat' => 60],
+        4 => ['repeat' => 432000],
+        5 => ['repeat' => 0],
+    ],
+
     // путь к директории с модульными тестами
     'unit_tests_directory' => __DIR__ . '/tests/unit',
 

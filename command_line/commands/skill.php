@@ -7,7 +7,8 @@ require_once(__DIR__ . '/skill/up.function.php');
 /**
  * Управление навыками.
  *
- * #./ef skill add - Добавление навыка.
+ * #./ef skill add             - Добавление навыка.
+ * #./ef skill up [theme name] - Прокачка навыка
  *
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  */

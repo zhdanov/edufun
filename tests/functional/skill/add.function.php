@@ -22,15 +22,15 @@ function add($theme_name, $description, $solution)
     $stdin = [
         [
             'text' => $theme_name . "\n",
-            'wait' => 1
+            'usleep' => 500000
         ],
         [
             'text' => $description . "\n.\n",
-            'wait' => 1
+            'usleep' => 500000
         ],
         [
             'text' => $solution . "\n.\n",
-            'wait' => 1
+            'usleep' => 500000
         ]
     ];
 

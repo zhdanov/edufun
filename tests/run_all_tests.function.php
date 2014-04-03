@@ -24,7 +24,7 @@ function run_all_tests($tests_directory)
     \ef\mongo\clean_db($mongo_db);
 
     // загрузка тестовых данных
-    \ef\tests\load_all_fixtures($config['fixtures_directory']);
+    \ef\tests\load_all_fixtures($config['fixtures_path']);
 
     $check_result = true;
 

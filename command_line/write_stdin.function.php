@@ -8,7 +8,7 @@ namespace ef\command_line;
  *
  * @param string $command Команда или путь к программе.
  * @param array  $stdin   Список подоваемого текста на вход программе.
- *                       [['text'=>'abcd', 'wait'=>1], ...]
+ *                       [['text'=>'abcd', 'usleep'=>500000], ...]
  *
  * @return void.
  */
@@ -26,15 +26,26 @@ function write_stdin($command, $stdin)
 
     if (is_resource($process)) {
         foreach ($stdin as $item) {
-            if (isset($item['wait'])) {
-                sleep($item['wait']);
+            // пауза в секундах
+            if (isset($item['sleep'])) {
+                sleep($item['sleep']);
             }
+
+            // паузка в микросекундах
+            if (isset($item['usleep'])) {
+                usleep($item['usleep']);
+            }
+
+            // текст, который необходимо передать в STDIN
             if (isset($item['text'])) {
                 fwrite($pipes[0], $item['text']) ;
             }
+
+            // команда
             if (isset($item['command'])) {
+                // завершить работу с программой
                 if ($item['command'] == 'exit') {
-                    sleep(1);
+                    usleep(500000);
                     $s = proc_get_status($process);
                     posix_kill($s['pid'], 3);
                     break;

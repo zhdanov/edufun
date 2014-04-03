@@ -27,11 +27,11 @@ function up($theme_name, $solution, $estimation)
     $stdin = [
         [
             'text' => $solution . "\n.\n",
-            'wait' => 1
+            'usleep' => 500000
         ],
         [
             'text' => $estimation . "\n",
-            'wait' => 1
+            'usleep' => 500000
         ],
         [
             'command' => 'exit'

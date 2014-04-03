@@ -6,16 +6,16 @@ namespace ef\tests;
  *
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  *
- * @param string $fixtures_directory Путь к директории с тестовыми данными.
+ * @param string $fixtures_path Путь к директории с тестовыми данными.
  *
  * @return void.
  */
 
-function load_all_fixtures($fixtures_directory)
+function load_all_fixtures($fixtures_path)
 {
-    foreach (new \DirectoryIterator($fixtures_directory) as $item) {
+    foreach (new \DirectoryIterator($fixtures_path) as $item) {
         if (!$item->isDir() && !$item->isDot()) {
-            require($fixtures_directory . '/' . $item->getFileName());
+            require($fixtures_path . '/' . $item->getFileName());
         }
     }
 }

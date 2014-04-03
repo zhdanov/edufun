@@ -32,11 +32,14 @@ $config = [
     ],
 
     // путь к директории с модульными тестами
-    'unit_tests_directory' => __DIR__ . '/tests/unit',
+    'unit_tests_path' => __DIR__ . '/tests/unit',
 
     // путь к директории с функциональными тестами
-    'functional_tests_directory' => __DIR__ . '/tests/functional',
+    'functional_tests_path' => __DIR__ . '/tests/functional',
 
     // путь к директории с тестовыми данными
-    'fixtures_directory' => __DIR__ . '/tests/fixtures'
+    'fixtures_path' => __DIR__ . '/tests/fixtures',
+
+    // путь к директории с отчётами
+    'reports_path' => __DIR__ . '/wiki/reports'
 ];

@@ -9,7 +9,10 @@ namespace ef\reports;
 
 function most_difficult_skills()
 {
+    require(__DIR__ . '/../config.php');
     require(__DIR__ . '/../mongo/connect.php');
+
+    $max_level = array_keys($config['skill_levels'])[count($config['skill_levels'])-1];
 
     $html  = '<meta charset="utf-8" />';
     $html .= '<h2>Самые трудные навыки</h2>';
@@ -18,8 +21,8 @@ function most_difficult_skills()
         $skills = $mongo_db->skill->aggregate([
             ['$match'   => ['theme_id' => $theme['_id']]],
             ['$unwind'  => '$experience'],
-            ['$project' => ['experience' => 1, 'description' => 1, 'count' => ['$add' => [1]]]],
-            ['$match'   => ['experience.estimation' => 'fail']],
+            ['$project' => ['experience' => 1, 'description' => 1, 'level' => 1, 'count' => ['$add' => [1]]]],
+            ['$match'   => ['experience.estimation' => 'fail', 'level' => ['$ne' => $max_level]]],
             ['$group'   => ['_id' => '$description', 'fails' => ['$sum' => '$count']]],
             ['$sort'    => ['fails' => -1]],
             ['$limit'   => 10]

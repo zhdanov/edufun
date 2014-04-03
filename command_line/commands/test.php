@@ -1,8 +1,9 @@
 <?php
-namespace ef\commands;
+namespace ef\command_line\commands;
 
 require(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/../../tests/run_all_tests.function.php');
+require_once(__DIR__ . '/../get_help.function.php');
 
 /**
  * Управление тестами.
@@ -36,6 +37,6 @@ switch ($argv[2]) {
     // справка
     case 'help':
     default:
-
+        echo \ef\command_line\get_help();
     break;
 }

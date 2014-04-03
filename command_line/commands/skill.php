@@ -3,6 +3,7 @@ namespace ef\command_line\commands;
 
 require_once(__DIR__ . '/skill/add.function.php');
 require_once(__DIR__ . '/skill/up.function.php');
+require_once(__DIR__ . '/../get_help.function.php');
 
 /**
  * Управление навыками.
@@ -29,5 +30,10 @@ switch ($argv[2]) {
                 \ef\command_line\commands\skill\up($argv[3]);
             }
         }
+    break;
+
+    // вывод справки
+    default:
+        echo \ef\command_line\get_help();
     break;
 }

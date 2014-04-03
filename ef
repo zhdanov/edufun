@@ -3,6 +3,7 @@
 namespace ef;
 
 require(__DIR__ . '/config.php');
+require_once(__DIR__ . '/command_line/get_help.function.php');
 
 /**
  * Роутер. Обрабатывает и запускает команды.
@@ -11,6 +12,13 @@ require(__DIR__ . '/config.php');
  *
  * @author Yuriy Zhdanov <yuriy.zhdanov@gmail.com>
  */
+
+// если не передан параметр
+if (!isset($argv[1])) {
+    // вывести справку
+    echo \ef\command_line\get_help();
+    exit();
+}
 
 $command = $argv[1];
 
@@ -25,5 +33,12 @@ if (isset($config['command_aliases'][$command])) {
     $argv[2] = $argv[1];
 }
 
-// запуск команды
-require(__DIR__ . '/command_line/commands/' . $command . '.php');
+// если файл существует
+$file = __DIR__ . '/command_line/commands/' . $command . '.php';
+if (file_exists($file)) {
+    // запуск команды
+    require($file);
+} else {
+    // вывод справки
+    echo \ef\command_line\get_help();
+}

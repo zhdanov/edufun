@@ -20,6 +20,7 @@ function up($skill_id, $solution, $estimation)
     require(__DIR__ . '/../../../mongo/connect.php');
 
     $skill = $mongo_db->skill->findOne(['_id'=>$skill_id]);
+
     if (!$skill) {
         throw new \Exception('Навык не найден');
     }
@@ -44,6 +45,10 @@ function up($skill_id, $solution, $estimation)
 
     if (!isset($skill_up['experience'][$experience_index]['estimation']) || $skill_up['experience'][$experience_index]['estimation'] != $estimation) {
         throw new \Exception('В опыте не установлена оценка');
+    }
+
+    if ($estimation == 'success' && (integer) $skill['level'] + 1 != (integer) $skill_up['level']) {
+        throw new \Exception('Не увеличился уровень при верном решении');
     }
 
     echo '.';

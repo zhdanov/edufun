@@ -17,7 +17,11 @@ require_once(__DIR__ . '/../get_help.function.php');
 switch ($argv[2]) {
     // добавление навыка
     case 'add':
-        \ef\command_line\commands\skill\add();
+        $theme_name = null;
+        if (isset($argv[3]) && $argv[3]) {
+            $theme_name = $argv[3];
+        }
+        \ef\command_line\commands\skill\add($theme_name);
     break;
 
     // прокачка навыка

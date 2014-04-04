@@ -21,6 +21,7 @@ function add($theme_name, $description, $solution)
     }
 
     $mongo_db->skill->insert([
+        'created'       => new \MongoDate(),
         'theme_id'      => $theme['_id'],
         'theme_name'    => $theme['name'],
         'description'   => $description,

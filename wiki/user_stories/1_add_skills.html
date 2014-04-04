@@ -3,7 +3,7 @@
 <h2>Добавление навыков в темы</h2>
 
 <strong>Описание:</strong><br />
-я как (тренерующийся) хочу (добавить навыки в темы) для того чтобы (стала возможна прокачка)<br />
+Я как (тренерующийся) хочу (добавить навыки в темы) для того чтобы (стала возможна прокачка)<br />
 <br />
 
 <strong>Задачи:</strong><br />
@@ -41,3 +41,22 @@
 * Прием из stdin решения<br />
 * Запись в бд в соответствии со схемой<br />
 * Вывод сообщения: В тему #### добавлен новый навы<br />
+<br />
+
+<strong>Материал</strong><br />
+Приём текста в консоли
+<pre>
+print "Type your message. Type '.' on a line by itself when you're done.\n";
+$fp = fopen('php://stdin', 'r');
+$last_line = false;
+$message = '';
+while (!$last_line) {
+    $next_line = fgets($fp, 1024); // read the special file to get the user input from keyboard
+    if (".\n" == $next_line) {
+      $last_line = true;
+    } else {
+      $message .= $next_line;
+    }
+}
+echo $message;
+</pre>

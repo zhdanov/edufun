@@ -42,7 +42,8 @@ function up($theme_name)
         // иначе вывести два варианта решения
         $tmp_file = '/tmp/ef-' . uniqid() . '.html';
         $template =  file_get_contents(__DIR__ . '/../../../skill/templates/estimation.html');
-        $template = str_replace('{my_solution}', $solution, $template);
+        $template = str_replace('{description}', $skill['description'], $template);
+        $template = str_replace('{my_solution}', $solution ? $solution : '        ', $template);
         $template = str_replace('{ef_solution}', $skill['solution'], $template);
         file_put_contents($tmp_file, $template);
         $estimation_diff = shell_exec('w3m -dump ' . $tmp_file);

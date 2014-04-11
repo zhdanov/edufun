@@ -2,17 +2,17 @@
 <tr>
 <td rowspan="2">
 <pre>
-{my_solution}
+<?= $data['my_solution'] ?>
 </pre>
 </td>
 <td>
-{description}
+<?= $data['description'] ?>
 </td>
 </tr>
 <tr>
 <td>
 <pre>
-{ef_solution}
+<?= $data['ef_solution'] ?>
 </pre>
 </td>
 </tr>

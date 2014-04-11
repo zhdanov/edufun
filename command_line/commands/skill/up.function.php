@@ -5,6 +5,7 @@ require_once(__DIR__ . '/../../read_stdin.function.php');
 require_once(__DIR__ . '/../../../skill/up.function.php');
 require_once(__DIR__ . '/../../../skill/get_for_grinding.function.php');
 require_once(__DIR__ . '/../../clean_output.function.php');
+require_once(__DIR__ . '/../../../template_engine/fetch.function.php');
 
 /**
  * Функция прокачивает навык из командой строки с помощью
@@ -41,11 +42,13 @@ function up($theme_name)
         // @todo: перенести этот блок в \ef\command_line\read_stdin()
         // иначе вывести два варианта решения
         $tmp_file = '/tmp/ef-' . uniqid() . '.html';
-        $template =  file_get_contents(__DIR__ . '/../../../skill/templates/estimation.html');
-        $template = str_replace('{description}', $skill['description'], $template);
-        $template = str_replace('{my_solution}', $solution ? $solution : '        ', $template);
-        $template = str_replace('{ef_solution}', $skill['solution'], $template);
-        file_put_contents($tmp_file, $template);
+        $template_data = [
+            'description' => $skill['description'],
+            'my_solution' => $solution ? $solution : '        ',
+            'ef_solution' => $skill['solution']
+        ];
+        $template_fetch = \ef\template_engine\fetch(__DIR__ . '/../../../skill/templates/estimation.php', $template_data);
+        file_put_contents($tmp_file, $template_fetch);
         $estimation_diff = shell_exec('w3m -dump ' . $tmp_file);
         unlink($tmp_file);
         echo $estimation_diff;

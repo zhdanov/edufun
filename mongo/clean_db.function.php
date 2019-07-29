@@ -12,7 +12,7 @@ namespace ef\mongo;
  */
 function clean_db($db)
 {
-    foreach ($db->getCollectionNames() as $collection_name) {
-        $db->dropCollection($collection_name);
+    foreach ($db->listCollections() as $collection) {
+        $db->dropCollection($collection->getName());
     }
 }

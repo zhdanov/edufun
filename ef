@@ -2,6 +2,7 @@
 <?php
 namespace ef;
 
+require __DIR__ . '/vendor/autoload.php';
 require(__DIR__ . '/config.php');
 require_once(__DIR__ . '/command_line/get_help.function.php');
 

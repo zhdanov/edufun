@@ -4,3 +4,8 @@
 1. mongodb
 2. php-mongo
 3. w3m
+
+cron:
+00 12 * * * php /home/zhdanov/ef/noty.php
+00 15 * * * php /home/zhdanov/ef/noty.php
+00 18 * * * php /home/zhdanov/ef/noty.php

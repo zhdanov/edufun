@@ -34,15 +34,22 @@ function up($skill_id, $solution, $estimation)
     $next_level = (integer) $skill['level'] + 1;
     if ($estimation == 'success' && isset($config['skill_levels'][$next_level])) {
         $level = $next_level;
-        $next_grinding = new \MongoDate(time() + (integer) $config['skill_levels'][$next_level]['repeat']);
+        $next_date = date('Y-m-d 00:00:00', time() + (integer) $config['skill_levels'][$next_level]['repeat']);
+        $next_grinding = new \MongoDB\BSON\UTCDateTime(strtotime($next_date) * 1000);
     }
 
-    $mongo_db->skill->update(
+    // если решение неверное, сбросить уровень и установить текущую дату
+    if ($estimation == 'fail' && isset($config['skill_levels'][$next_level])) {
+        $level = 1;
+        $next_grinding = new \MongoDB\BSON\UTCDateTime(time() * 1000);
+    }
+
+    $mongo_db->skill->updateOne(
         ['_id'=>$skill_id],
         [
             '$push' => [
                 'experience' => [
-                    'acquired'   => new \MongoDate(),
+                    'acquired'   => new \MongoDB\BSON\UTCDateTime(time() * 1000),
                     'solution'   => $solution,
                     'estimation' => $estimation
                 ]

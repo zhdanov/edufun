@@ -20,13 +20,13 @@ function add($theme_name, $description, $solution)
         throw new \Exception('Тема не найдена');
     }
 
-    $mongo_db->skill->insert([
-        'created'       => new \MongoDate(),
+    $mongo_db->skill->insertOne([
+        'created'       => new \MongoDB\BSON\UTCDateTime(),
         'theme_id'      => $theme['_id'],
         'theme_name'    => $theme['name'],
         'description'   => $description,
         'solution'      => $solution,
         'level'         => 1,
-        'next_grinding' => new \MongoDate()
+        'next_grinding' => new \MongoDB\BSON\UTCDateTime()
     ]);
 }

@@ -13,9 +13,9 @@ namespace ef\tests;
 
 function load_all_fixtures($fixtures_path)
 {
-    foreach (new \DirectoryIterator($fixtures_path) as $item) {
-        if (!$item->isDir() && !$item->isDot()) {
-            require($fixtures_path . '/' . $item->getFileName());
+    foreach (scandir($fixtures_path) as $file) {
+        if (is_file($fixtures_path . '/' . $file) && $file[0] != '.') {
+            require($fixtures_path . '/' . $file);
         }
     }
 }

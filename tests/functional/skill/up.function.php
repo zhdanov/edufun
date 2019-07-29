@@ -41,8 +41,7 @@ function up($theme_name, $solution, $estimation)
     // отправка в STDIN команде "./ef skill up"
     \ef\command_line\write_stdin(__DIR__ . '/../../../ef skill up ' . $theme_name, $stdin);
 
-    $skill = $mongo_db->skill->find()->sort(['experience.acquired' => -1])->limit(1);
-    $skill = array_shift(iterator_to_array($skill));
+    $skill = $mongo_db->skill->findOne([], ['sort'=>['experience.acquired' => -1]]);
 
     if (!$skill) {
         throw new \Exception('Навык не найден');

@@ -1,0 +1,13 @@
+{
+  "name": "ef",
+  "version": "0.0.1",
+  "repositories": [
+    {
+      "type": "artifact",
+      "url": "/usr/local/composer-store/"
+    }
+],
+  "require":{
+    "mongodb/mongodb": "^1.1"
+  }
+}

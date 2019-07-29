@@ -14,7 +14,7 @@ function _list()
     $out = '';
 
     $i = 1;
-    foreach ($mongo_db->theme->find()->sort(['name' => 1]) as $theme) {
+    foreach ($mongo_db->theme->find([], ['sort'=>['name'=>1]]) as $theme) {
         $out .= $i . '. ' . $theme['name'] . "\n";
         $i++;
     }

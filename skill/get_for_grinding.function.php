@@ -27,9 +27,10 @@ function get_for_grinding($theme_name)
     // поиск ближайшего навыка для прокачки
     $skill = $mongo_db->skill->find([
         'theme_id'      => $theme['_id'],
-        'level'         => ['$ne' => $max_level],
-        'next_grinding' => ['$lte' => new \MongoDate()]
-    ])->sort(['next_grinding' => -1])->limit(1);
+        'level'         => ['$nin' => [$max_level, '99']],
+        'next_grinding' => ['$lte' => new \MongoDB\BSON\UTCDateTime()]
+    ], ['sort'=>['next_grinding'=>-1], 'limit'=>1]);
+
     $skill = iterator_to_array($skill);
 
     if ($skill) {

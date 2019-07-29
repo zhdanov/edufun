@@ -17,13 +17,15 @@ namespace ef\mongo;
 function connect($host, $user, $password, $db)
 {
     try {
-        $conn = new \Mongo($host);
-        $db = $conn->selectDB($db);
+        $conn = new \MongoDB\Client("mongodb://127.0.0.1:27017"); // @fixme: подставлять хост
+        $db = $conn->selectDatabase($db);
     } catch (MongoConnectionException $e) {
         die('Не удалось подключится к MongoDB');
     } catch (MongoException $e) {
         die('Ошибка: ' . $e->getMessage());
     }
+
+    return [$conn, $db];
 
     return [$conn, $db];
 }

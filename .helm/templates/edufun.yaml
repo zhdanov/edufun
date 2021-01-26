@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Chart.Name }}-{{ env "environment" }}
+spec:
+  serviceName: {{ .Chart.Name }}-{{ env "environment" }}
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-{{ env "environment" }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-{{ env "environment" }}
+    spec:
+      containers:
+      - name: php-cli
+        {{ tuple (printf "%s-%s" .Chart.Name "php-cli") . | werf_container_image }}
+      - name: mongodb
+        {{ tuple (printf "%s-%s" .Chart.Name "mongodb") . | werf_container_image }}
+        ports:
+        - containerPort: 27017
+          name: mongod
+          protocol: TCP
+        volumeMounts:
+        - name: data-store
+          mountPath: /data/db
+          subPath: {{ .Chart.Name }}-mongodb
+      volumes:
+      - name: data-store
+        persistentVolumeClaim:
+          claimName: nfs-pvc-{{ .Chart.Name }}-{{ env "environment" }}

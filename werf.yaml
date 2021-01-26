@@ -1,0 +1,41 @@
+project: {{ env "appname" }}
+configVersion: 1
+deploy:
+  namespace: {{ env "appname" }}-{{ env "environment" }}
+  namespaceSlug: false
+
+---
+image: {{ env "appname" }}-php-cli
+from: php:7.4.14-cli-alpine3.13
+docker:
+  USER: root
+  WORKDIR: /var/www/html
+  EXPOSE: "9000"
+  CMD: ["sleep", "infinity"]
+git:
+- add: /
+  to: /root/edufun
+  stageDependencies:
+    install:
+      - "**/*"
+    setup:
+      - "**/*"
+ansible:
+  beforeInstall:
+  - name: install packages for php-cli
+    shell: apk add --no-cache libc-dev autoconf make gcc g++ bash vim php7-dev w3m
+  - name:  install php-extentions
+    shell: |
+      pecl install mongodb
+      docker-php-ext-enable mongodb
+  - name: install php config
+    shell: |
+      cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+  setup:
+  - name: install edufun
+    shell: |
+      curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+      composer install --working-dir=/root/edufun
+---
+image: {{ env "appname" }}-mongodb
+from: mongo:4.4.3-bionic

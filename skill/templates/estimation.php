@@ -2,17 +2,19 @@
 <tr>
 <td rowspan="2">
 <pre>
-<?= $data['my_solution'] ?>
+<?= htmlspecialchars($data['my_solution']) ?>
 </pre>
 </td>
 <td>
-<?= $data['description'] ?>
+<pre>
+<?= htmlspecialchars($data['description']) ?>
+</pre>
 </td>
 </tr>
 <tr>
 <td>
 <pre>
-<?= $data['ef_solution'] ?>
+<?= htmlspecialchars($data['ef_solution']) ?>
 </pre>
 </td>
 </tr>

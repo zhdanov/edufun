@@ -37,5 +37,5 @@ ansible:
       curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
       composer install --working-dir=/root/edufun
 ---
-image: {{ env "appname" }}-mongodb
+image: mongodb
 from: mongo:4.4.3-bionic

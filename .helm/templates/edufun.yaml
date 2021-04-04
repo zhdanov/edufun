@@ -17,7 +17,7 @@ spec:
       - name: php-cli
         {{ tuple (printf "%s-%s" .Chart.Name "php-cli") . | werf_container_image }}
       - name: mongodb
-        {{ tuple (printf "%s-%s" .Chart.Name "mongodb") . | werf_container_image }}
+        {{ tuple (printf "mongodb") . | werf_container_image }}
         ports:
         - containerPort: 27017
           name: mongod
